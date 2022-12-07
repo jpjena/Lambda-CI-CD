@@ -38,7 +38,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
       - name: List 
-        run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
+        run: ls -lrt
    
   deploy:
     runs-on: ubuntu-latest
@@ -46,11 +46,11 @@ jobs:
       - name: Install AWS
         id: install-aws-cli
         uses: unfor19/install-aws-cli-action@master
-        env:
-          AWS_REGION: 'us-east-1'
-          AWS_S3_BUCKET: my.lambda.deployment.bucket
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - run: aws --version
         shell: bash
       - run: aws s3api get-object --bucket my.lambda.deployment.bucket --key main.zip main.zip
