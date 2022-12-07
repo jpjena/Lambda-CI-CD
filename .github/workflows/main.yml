@@ -50,7 +50,7 @@ jobs:
         shell: bash
       - run: aws s3api get-object --bucket my.lambda.deployment.bucket --key main.zip main.zip
         shell: bash
-      run: ls -lrt
+      - run: ls -lrt
       #- run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
       # - name: default deploy
       #   uses: appleboy/lambda-action@master
