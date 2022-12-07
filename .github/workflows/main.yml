@@ -19,7 +19,8 @@ jobs:
       ##########################
       # Checkout the code base #
       ##########################
-      - uses: actions/checkout@v2
+      - name: checkout source code
+        uses: actions/checkout@v2
       - uses: vimtor/action-zip@v1
         with:
           files: main.py
@@ -60,7 +61,8 @@ jobs:
       # - name: Create Lambda Function
       #   run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
       - name: Update Lambda Function
-        run: aws lambda update-function-code --function-name my-function1 --zip-file fileb://main.zip
+        #run: aws lambda update-function-code --function-name my-function1 --zip-file fileb://main.zip
+        run: aws lambda update-function-code --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip
       # - name: default deploy
       #   uses: appleboy/lambda-action@master
       #   with:
