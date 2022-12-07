@@ -38,7 +38,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
       - name: List 
-        run: ls -lrt
+        run: run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
    
   deploy:
     runs-on: ubuntu-latest
