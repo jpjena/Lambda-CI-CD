@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  packaging:
     # Name the Job
     name: Zip Files
     # Set the agent to run on
@@ -36,12 +36,25 @@ jobs:
           AWS_S3_BUCKET: my.lambda.deployment.bucket
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+        name: List 
+        run: ls -lrt
+   
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Set up AWS CLI
+     - id: install-aws-cli
+     - uses: unfor19/install-aws-cli-action@v1
+        run: aws lambda create-function --function-name my-function --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       ################################
       # Run Linter against code base #
       ################################
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Lint Code Base
+      #  uses: github/super-linter@v4
+      #  env:
+      #    VALIDATE_ALL_CODEBASE: false
+      #    DEFAULT_BRANCH: master
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
