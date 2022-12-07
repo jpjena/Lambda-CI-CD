@@ -43,7 +43,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Install AWS
         id: install-aws-cli
         uses: unfor19/install-aws-cli-action@master
