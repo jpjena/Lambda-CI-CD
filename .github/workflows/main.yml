@@ -38,10 +38,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
       - name: List 
-        #run: ls -lrt
-        run: aws lambda list-functions --max-items 10
-      - name: Update Lambda Cose in S3
-        run: aws lambda update-function-code --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip
+        run: ls -lrt
    
   deploy:
     runs-on: ubuntu-latest
@@ -60,7 +57,8 @@ jobs:
       - run: aws s3api get-object --bucket my.lambda.deployment.bucket --key main.zip main.zip
         shell: bash
       - run: ls -lrt
-      - run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
+      #- run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
+      - run: aws lambda update-function-code --function-name my-function1 --zip-file fileb://main.zip
       # - name: default deploy
       #   uses: appleboy/lambda-action@master
       #   with:
