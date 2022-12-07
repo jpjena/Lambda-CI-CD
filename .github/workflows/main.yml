@@ -43,7 +43,7 @@ jobs:
    
   deploy:
     name: Deploy Lambda
-    needs: job1
+    needs: Zip Files
     runs-on: ubuntu-latest
     steps:
       - name: Install AWS
