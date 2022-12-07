@@ -59,7 +59,7 @@ jobs:
         shell: bash
       - run: ls -lrt
       - name: Create Lambda Function
-         run: aws lambda create-function --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
+        run: aws lambda create-function --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
          #run: aws lambda create-function --function-name my-function1 --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
       #- name: Update Lambda Function
         #run: aws lambda update-function-code --function-name my-function1 --zip-file fileb://main.zip
