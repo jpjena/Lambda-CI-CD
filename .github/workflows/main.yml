@@ -38,7 +38,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
       - name: List 
-        run: ls -lrt
+        #run: ls -lrt
         run: aws lambda list-functions --max-items 10
       - name: Update Lambda Cose in S3
         run: aws lambda update-function-code --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip
