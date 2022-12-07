@@ -40,12 +40,15 @@ jobs:
       - name: List 
         run: ls -lrt
    
-  #deploy:
-    #runs-on: ubuntu-latest
-    #steps:
-    # - name: Set up AWS CLI
-     #- id: install-aws-cli
-    # - uses: unfor19/install-aws-cli-action@v1
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    steps:
+      - name: Install AWS
+        id: install-aws-cli
+        uses: unfor19/install-aws-cli-action@master
+      - run: aws --version
+        shell: bash
         #run: aws lambda create-function --function-name my-function --zip-file fileb://main.zip --handler index.handler --runtime python3.8 --role arn:aws:iam::876053156279:role/lambda-ex
     #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
