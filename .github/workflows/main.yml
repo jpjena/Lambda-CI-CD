@@ -40,8 +40,8 @@ jobs:
       - name: List 
         run: ls -lrt
         run: aws lambda list-functions --max-items 10
-      -name: Update Lambda Cose in S3
-        run: aws lambda update-function-code --function-name my-function --s3-bucket my.lambda.deployment.bucket --s3-key main.zip
+      - name: Update Lambda Cose in S3
+        run: aws lambda update-function-code --function-name my-function1 --s3-bucket my.lambda.deployment.bucket --s3-key main.zip
    
   deploy:
     runs-on: ubuntu-latest
